@@ -8,7 +8,6 @@ export function getAppointmentsForDay(array, day) {
 
   } else {
       const appointID = filteredDays[0].appointments
-      console.log("appointID",appointID )
 
       for (let id of appointID ) {
         appointmentsDay.push(array.appointments[id]);
@@ -16,3 +15,21 @@ export function getAppointmentsForDay(array, day) {
       return appointmentsDay
   };
 };
+
+export function getInterview(state, interview) {
+   if (!interview) {
+      
+      return null;
+
+    } else {
+      
+      const intObj = {
+        student:interview.student, 
+        interviewer: interview.interviewer
+      };
+       
+      intObj.interviewer = state.interviewers[intObj.interviewer]
+ 
+      return intObj;
+    }
+  };
