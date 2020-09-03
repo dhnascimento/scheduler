@@ -22,6 +22,13 @@ export default function Form(props) {
 
 
   const save = () => {
+    if (!name) {
+      return setError("Please fill in the student's name");
+    }
+    if (!interviewer) {
+      return setError("Please select an interviewer");
+    }
+    setError("");
     props.onSave(name, interviewer);
     };
   
@@ -42,6 +49,7 @@ export default function Form(props) {
               This must be a controlled component
             */
           />
+        <section className="appointment__validation">{error}</section>
         </form >
         <InterviewerList interviewers={props.interviewers} interviewer={interviewer} setInterviewer={setInterviewer} />
       </section>
