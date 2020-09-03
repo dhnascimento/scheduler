@@ -9,70 +9,10 @@ import DayList from "./DayList";
 import "components/Appointment";
 import Appointment from "components/Appointment";
 
-
-const appointments = [
-  {
-    id: 1,
-    time: "12pm",
-  },
-  {
-    id: 2,
-    time: "1pm",
-    interview: {
-      student: "Lydia Miller-Jones",
-      interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      }
-    }
-  },
-  {
-    id: 3,
-    time: "2pm",
-  },
-  {
-    id: 4,
-    time: "3pm",
-    interview: {
-      student: "Hermeto Pascoal",
-      interviewer: {
-        id: 7,
-        name: "Sven Jones",
-        avatar: "https://i.imgur.com/twYrpay.jpg"
-      }
-    }
-  },
-  {
-    id: 8,
-    time: "3pm",
-    interview: {
-      student: "Tracer Ho",
-      interviewer: {
-        id: 8,
-        name: "Cohana Roy",
-        avatar: "https://i.imgur.com/FK8V841.jpg"
-      }
-    }
-  },
-  {
-    id: 9,
-    time: "6pm",
-    interview: {
-      student: "Krl Alado",
-      interviewer: {
-        id: 8,
-        name: "Mildred Nazir",
-        avatar: "https://i.imgur.com/T2WwVfS.png"
-      }
-    }
-  }
-];
+import { getAppointmentsForDay } from "helpers/selectors";
 
 export default function Application(props) {
 
-  // const setDayName = day => setState(prev => ({ ...prev, day}));
-  
   const [state, setState] =   useState({
     dayName: "Monday",
     days: [],
@@ -82,13 +22,17 @@ export default function Application(props) {
   const setDay = dayName => setState(prev => ({ ...prev, dayName }));
   
   useEffect(() => {
-    axios.get(`http://localhost:8001/api/days`)
-    .then(response => {
-      console.log("RESPONSE", response.data);
-      setState(prev => ({...prev, days: response.data}));
-         })
-  }, []);
+    Promise.all([
+      Promise.resolve(axios.get(`/api/days`)),
+      Promise.resolve(axios.get(`/api/appointments`))
+    ])    
+    .then((all) => {
+      setState(prev => ({days: all[0].data, appointments: all[1].data}));
+      })
+    }, []);
 
+    const appointments = getAppointmentsForDay(state, state.dayName);
+   
   return (
       <main className="layout">
         <section className="sidebar">
