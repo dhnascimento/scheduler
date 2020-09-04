@@ -33,3 +33,22 @@ export function getInterview(state, interview) {
       return intObj;
     }
   };
+
+export function getInterviewersForDay(array, day) {
+  const filteredDays = array.days.filter(item => item.name === day)
+  const interviewersDay = [];
+  if (!filteredDays[0]) {
+
+      return interviewersDay;
+
+  } else {
+      const interviewersID = filteredDays[0].interviewers
+
+      for (let id of interviewersID) {
+        interviewersDay.push(array.interviewers[id]);
+      }
+      return interviewersDay
+  };
+};
+
+
