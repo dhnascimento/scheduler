@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import InterviewerList from "../InterviewerList";
-import interviewer from "../InterviewerList";
-import setInterviewer from "../InterviewerList";
 import Button from "../Button";
 
 export default function Form(props) {
@@ -21,7 +19,7 @@ export default function Form(props) {
   };
 
 
-  const save = () => {
+  const validating = () => {
     if (!name) {
       return setError("Please fill in the student's name");
     }
@@ -31,7 +29,6 @@ export default function Form(props) {
     setError("");
     props.onSave(name, interviewer);
     };
-  
 
 
   return(
@@ -56,7 +53,7 @@ export default function Form(props) {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={cancel}>Cancel</Button>
-          <Button confirm onClick={save}>Save</Button>
+          <Button confirm onClick={validating}>Save</Button>
         </section>
       </section>
     </main>

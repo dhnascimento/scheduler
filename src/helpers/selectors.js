@@ -1,5 +1,4 @@
 export function getAppointmentsForDay(array, day) {
-
   const filteredDays = array.days.filter(item => item.name === day)
   const appointmentsDay = [];
   if (!filteredDays[0]) {
