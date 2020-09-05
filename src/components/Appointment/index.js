@@ -37,7 +37,8 @@ function save(name, interviewer) {
     }
   }
 
-  const MESSAGE = ""
+  const EDIT = "EDIT";
+  const MESSAGE = "Delete the appointment?"
   const CONFIRMING = "CONFIRMING";
   const DELETING = "DELETING";
   const SAVING = "SAVING"
@@ -58,6 +59,7 @@ function save(name, interviewer) {
     student={props.interview.student}
     interviewer={props.interview.interviewer}
     onDelete={() => cancel(false)}
+    onEdit={() => transition(EDIT)}
   />
 )}
   {mode === CREATE && (
@@ -65,7 +67,10 @@ function save(name, interviewer) {
   )}
   {mode === SAVING &&( <Status message={SAVING} />)}
   {mode === DELETING && (<Status message={DELETING} />)}
-  {mode === CONFIRMING && (<Confirm message={"Delete the appointment?"} onCancel={back} onConfirm={() => cancel(true)} />)}
+  {mode === CONFIRMING && (<Confirm message={MESSAGE} onCancel={back} onConfirm={() => cancel(true)} />)}
+  {mode === EDIT && (< Form name={props.interview.student} interviewer={props.interview.interviewer.id} 
+   interviewers={props.interviewers} 
+  onSave={save} onCancel={() => {return back(SHOW)}}/>)}
   </article>);
 
 };
