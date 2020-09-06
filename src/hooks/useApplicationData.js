@@ -45,7 +45,6 @@ export default function useApplicationData () {
     .then(() => axios.get(`/api/days`))
     .then((response) => {
       const days = response.data
-      console.log(days);
       setState({
         ...state,
         appointments,
@@ -54,7 +53,6 @@ export default function useApplicationData () {
       }
     );
   };
-
 
   function cancelInterview(id) {
 
@@ -71,7 +69,6 @@ export default function useApplicationData () {
     .then(() => axios.get(`/api/days`))
     .then((response) => {
       const days = response.data
-      console.log(days);
       setState({
         ...state,
         appointments,
