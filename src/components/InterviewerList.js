@@ -1,7 +1,7 @@
 import React from "react";
 import "components/InterviewerList.scss";
 import InterviewerListItem from "./InterviewerListItem";
-
+import PropTypes from 'prop-types';
 
   export default function InterviewerList(props) {
     const interviewer = props.interviewers.map(int => {
@@ -16,6 +16,7 @@ import InterviewerListItem from "./InterviewerListItem";
       );
     });
     
+
     return (
       <section className="interviewers">
         <h4 className="interviewers__header text--light">Interviewers</h4>
@@ -23,3 +24,8 @@ import InterviewerListItem from "./InterviewerListItem";
       </section>
     );
   }
+
+
+  InterviewerList.propTypes = {
+  interviewers: PropTypes.array.isRequired
+};

@@ -18,14 +18,15 @@ export default function Form(props) {
     props.onCancel();
   };
 
-
-  const validating = () => {
+  const validate = () => {
     if (!name) {
-      return setError("Please fill in the student's name");
+      setError("Student name cannot be blank");
+      return;
     }
-    if (!interviewer) {
-      return setError("Please select an interviewer");
-    }
+    // if (!interviewer) {
+    //   setError("Interviewer name cannot be blank");
+    //   return; 
+    // }
     setError("");
     props.onSave(name, interviewer);
     };
@@ -42,6 +43,7 @@ export default function Form(props) {
             value={name}
             placeholder="Enter Student Name"
             onChange={event => setName(event.target.value)}
+            data-testid={"student-name-input"}
             /*
               This must be a controlled component
             */
@@ -53,7 +55,7 @@ export default function Form(props) {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={cancel}>Cancel</Button>
-          <Button confirm onClick={validating}>Save</Button>
+          <Button confirm onClick={validate}>Save</Button>
         </section>
       </section>
     </main>

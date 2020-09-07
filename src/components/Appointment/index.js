@@ -59,7 +59,7 @@ function save(name, interviewer) {
 
   return (    
   <article className="appointment">
-  <Header time={props.time} />a
+  <Header time={props.time} />
   {mode === EMPTY && <Empty onAdd={() => {return transition(CREATE)}} />}
 {mode === SHOW && (
   <Show
