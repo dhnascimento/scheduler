@@ -58,7 +58,7 @@ function save(name, interviewer) {
 
 
   return (    
-  <article className="appointment">
+  <article className="appointment" data-testid="appointment">
   <Header time={props.time} />
   {mode === EMPTY && <Empty onAdd={() => {return transition(CREATE)}} />}
 {mode === SHOW && (
