@@ -1,9 +1,7 @@
-import React from "react";
-import "./styles.scss";
-
+import React from 'react';
+import './styles.scss';
 
 export default function Empty(props) {
-
   return (
     <main className="appointment__add">
       <img
@@ -14,4 +12,4 @@ export default function Empty(props) {
       />
     </main>
   );
-};
+}
